@@ -1,7 +1,7 @@
 let producto = document.querySelector('#product')
 let shoppingCart = []
-let button;
-let dato;
+
+ 
 
 async function productos(){
     try{
@@ -22,6 +22,7 @@ async function productos(){
 
 producto.addEventListener('click', productos())
 
+//productos
 function info(result){
     
     const productList = document.getElementById('product-list');
@@ -34,15 +35,57 @@ function info(result){
         clone.querySelector('.product-name').textContent = product.title;
         clone.querySelector('.product-code').textContent = `Código: ${product.category.id}`;
         clone.querySelector('.product-price').textContent = `Precio: $${product.price.toFixed(2)}`
-        button = clone.querySelector('.add-cart');
+        clone.querySelectorAll('.add-cart').forEach((boton)=>{
+            boton.addEventListener('click', ()=>{
+                addCart(product)
+            })
+        })
         
-        button.addEventListener('click',()=>{dato.textContent = product})
+        
         productList.appendChild(clone)
     });
 }
-button.addEventListener('click', 
-    addCart(dato))
-function addCart(dato){
-  shoppingCart.push(dato)
-  console.log(`hola soy el cart: ${shoppingCart.length}`)
+
+//carrito
+function addCart(product){
+    let cartCounter = document.querySelector('.cart-counter')
+    let cartButton = document.querySelector('#cart-button')
+    
+    cartButton.textContent = shoppingCart.length >= 0 ? "Finalizar compra":"carrito Vacío"
+    cartCounter.textContent = shoppingCart.length + 1
+    shoppingCart.push(product)
+    console.log(shoppingCart[shoppingCart.length - 1])
+    let ultimoElemento = shoppingCart[shoppingCart.length - 1]
+    verCarrito(ultimoElemento)
+  
 }
+
+
+
+//renderizar productos
+ function verCarrito(contenido){
+    let template = document.querySelector('#cart-template').content;
+    let container = document.querySelector('.cart-container');
+    let total = document.querySelector('#total');
+    
+
+    
+            const clone = document.importNode(template, true);
+
+            const img = clone.querySelector('#img-product')
+            img.src = contenido.category.img;
+            img.alt = contenido.title
+            const parrafo = clone.querySelector('#p-product')
+            parrafo.textContent = contenido.title
+
+            container.appendChild(clone)
+        
+        
+    
+    //total.textContent = `Total: ${}`
+    
+    
+ }
+
+ 
+ 
