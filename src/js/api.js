@@ -1,7 +1,8 @@
-let producto = document.querySelector('#product')
-let shoppingCart = []
+let producto = document.querySelector('#product');
+let shoppingCart = [];
+let totalPrice = 0;
 
- 
+
 
 async function productos(){
     try{
@@ -31,7 +32,7 @@ function info(result){
     result.forEach(product => {
         const clone = document.importNode(template, true);
 
-        clone.querySelector('.product-image').src = product.category.img; 
+        clone.querySelector('.product-image').src = "producto-raíces" //product.category.img; 
         clone.querySelector('.product-name').textContent = product.title;
         clone.querySelector('.product-code').textContent = `Código: ${product.category.id}`;
         clone.querySelector('.product-price').textContent = `Precio: $${product.price.toFixed(2)}`
@@ -54,6 +55,7 @@ function addCart(product){
     cartButton.textContent = shoppingCart.length >= 0 ? "Finalizar compra":"carrito Vacío"
     cartCounter.textContent = shoppingCart.length + 1
     shoppingCart.push(product)
+    totalPrice += product.price
     console.log(shoppingCart[shoppingCart.length - 1])
     let ultimoElemento = shoppingCart[shoppingCart.length - 1]
     verCarrito(ultimoElemento)
@@ -74,18 +76,17 @@ function addCart(product){
 
             const img = clone.querySelector('#img-product')
             img.src = contenido.category.img;
-            img.alt = contenido.title
+            img.alt = "img-producto-raices"
             const parrafo = clone.querySelector('#p-product')
             parrafo.textContent = contenido.title
-
-            container.appendChild(clone)
-        
-        
-    
+            const precio = clone.querySelector('#precio-producto')
+            precio.textContent = `Precio: $${contenido.price.toFixed(2)}` 
+            
+            container.appendChild(clone) 
+        total.textContent = `Total: ${totalPrice.toFixed(2)}`
+ 
     //total.textContent = `Total: ${}`
     
     
  }
 
- 
- 

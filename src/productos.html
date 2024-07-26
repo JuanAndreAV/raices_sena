@@ -50,18 +50,19 @@
          
          <div id="sideCart" class="fixed top-0 right-0 h-full w-2/3 sm:w-1/3 bg-white drop-shadow-md hidden transition-transform  z-50">
             <div class="bg-white w-96 h-3/4 p-4 rounded-lg flex flex-col">
-              <H1 class="text-center mb-5 font-semibold">Carrito</H1>
+              <H1 class=" mb-5 font-semibold">Carrito</H1>
                 <div class=" flex-1 overflow-y-auto">
-                  <ul class="cart-container space-y-4 shadow-lg">
+                  <ul class="cart-container space-y-4 shadow-lg flex flex-col p-5">
                     <template id="cart-template">
-                      <li class=""><img src="" alt="imagenProducto" id="img-product"></li>
-                      <li class=""><p id="p-product"></p></li>
+                      <li class="rounded-lg outline outline-2 outline-offset-2 size-16 "><img src="" alt="imagenProducto" id="img-product" class=""></li>
+                      <li class="text-wrap"><p class="text-green-500" id="p-product" ></p></li>
+                      <li><h2 id="precio-producto"></h2></li>
                       <hr class="w-48 h-1 mx-auto my-4 bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-700">
                     </template>
                   </ul>
                 </div>
-                <h2 id="total">Total:</h2>
-                <button class="bg-green-300 w-1/2 self-center rounded-full p-2 text-xs text-white hover:bg-slate-600" id="cart-button">Carrito Vacío</button>
+                <h2 id="total"class="font-bold text-start">Total:</h2>
+                <button class="bg-green-300 w-1/2  rounded-full p-2 text-xs text-white hover:bg-slate-600" id="cart-button">Carrito Vacío</button>
             </div>
          </div>
        </header>
